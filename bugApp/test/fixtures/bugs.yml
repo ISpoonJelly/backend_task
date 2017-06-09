@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  appToken: MyString
+  number: 1
+  status: 1
+  priority: 1
+  comment: MyString
+  state: one
+
+two:
+  appToken: MyString
+  number: 1
+  status: 1
+  priority: 1
+  comment: MyString
+  state: two
