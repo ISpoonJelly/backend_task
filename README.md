@@ -6,7 +6,7 @@ consists of simple models that represents Bugs and
 States(The state of the device the bug was created on).
 * A Postgres database container.
 * A RabbitMQ message queuing service container.
-* An Elasticsearch container
+* An Elasticsearch container.
 
 Communication between containers are done using container links.
 
