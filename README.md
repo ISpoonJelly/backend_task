@@ -3,10 +3,10 @@ The stack consists of several docker containers as follows
 
 * A web app built in rails that handles bugs and
 consists of simple models that represents Bugs and
-States(The state of the device the bug was created one).
+States(The state of the device the bug was created on).
 * A Postgres database container.
 * A RabbitMQ message queuing service container.
-* An Elasticsearch container
+* An Elasticsearch container.
 
 Communication between containers are done using container links.
 
@@ -19,7 +19,7 @@ docker-compose up
 
 # Testing
 
-##Posting
+## Posting
 For Testing the POST /bugs end point we can execute:
 ```
 curl -X POST \
@@ -42,7 +42,7 @@ where [status] can be one of [fresh, in_progress, closed]
 and [priority] can be one of [minor, major, critical]
 ```
 
-##Getting
+## Getting
 For Testing the GET /bugs end point we can either execute:
 ```
 curl -X GET http://localhost:3000/bugs/
