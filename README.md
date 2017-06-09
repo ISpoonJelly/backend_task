@@ -1,8 +1,3 @@
-Title         : Bug App
-Author        : Tarek ElBeih
-
-[TITLE]
-
 # The Stack
 The stack consists of several docker containers as follows
 
