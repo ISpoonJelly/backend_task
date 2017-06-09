@@ -31,7 +31,7 @@ docker-compose run -d bugapp rake sneakers:run
 
 # Testing
 
-##Posting
+## Posting
 For Testing the POST /bugs end point we can execute:
 ```
 curl -X POST \
@@ -54,7 +54,7 @@ where [status] can be one of [fresh, in_progress, closed]
 and [priority] can be one of [minor, major, critical]
 ```
 
-##Getting
+## Getting
 For Testing the GET /bugs end point we can either execute:
 ```
 curl -X GET http://localhost:3000/bugs/
