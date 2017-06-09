@@ -20,7 +20,7 @@ docker-compose up
 To Setup the database execute:
 ```
 docker-compose run bugapp rake db:create
-docker-compose run bugapp rake db:create
+docker-compose run bugapp rake db:migrate
 ```
 
 To Start the message queuing background workers
