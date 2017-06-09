@@ -3,7 +3,7 @@ The stack consists of several docker containers as follows
 
 * A web app built in rails that handles bugs and
 consists of simple models that represents Bugs and
-States(The state of the device the bug was created one).
+States(The state of the device the bug was created on).
 * A Postgres database container.
 * A RabbitMQ message queuing service container.
 * An Elasticsearch container
