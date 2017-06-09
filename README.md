@@ -1,8 +1,3 @@
-Title         : Bug App
-Author        : Tarek ElBeih
-
-[TITLE]
-
 # The Stack
 The stack consists of several docker containers as follows
 
@@ -21,18 +16,6 @@ To start the whole stack execute:
 ```
 docker-compose up
 ```
-
-To Setup the database execute:
-```
-docker-compose run bugapp rake db:create
-docker-compose run bugapp rake db:create
-```
-
-To Start the message queuing background workers
-```
-docker-compose run -d bugapp rake sneakers:run
-```
-
 
 # Testing
 

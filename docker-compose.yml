@@ -4,13 +4,32 @@ services:
     image: postgres:9.4
   rabbitmq:
     image: rabbitmq:3-management
-  bugapp:
+  web:
     build: .
+    image: bugapp
     command: rails server -p 3000 -b '0.0.0.0'
     volumes:
       - .:/bugApp
     ports:
       - "3000:3000"
     links:
-      - rabbitmq
       - postgres
+      - rabbitmq
+    depends_on:
+      - postgres
+      - rabbitmq
+  sneakers:
+    image: bugapp
+    command: rake sneakers:run
+    depends_on:
+      - web
+  db_creation:
+    image: bugapp
+    command: rake db:create
+    depends_on:
+      - web
+  db_migration:
+    image: bugapp
+    command: rake db:migrate
+    depends_on:
+      - db_creation
