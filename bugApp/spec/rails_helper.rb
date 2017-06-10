@@ -37,8 +37,6 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-
-
 RSpec.configure do |config|
   # add `FactoryGirl` methods
   config.include FactoryGirl::Syntax::Methods

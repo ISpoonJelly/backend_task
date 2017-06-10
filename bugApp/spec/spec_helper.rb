@@ -15,6 +15,16 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 RSpec.configure do |config|
+
+  config.before do
+    Bug.__elasticsearch__.create_index! rescue nil
+  end
+
+  config.after do
+    Bug.__elasticsearch__.delete_index! rescue nil
+    Bug.__elasticsearch__.create_index! rescue nil
+    Bug.import rescue nil
+  end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

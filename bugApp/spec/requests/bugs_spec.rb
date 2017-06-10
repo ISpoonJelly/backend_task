@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Bugs API' do
   # Initialization
-  let!(:state) { create(:state) }
   let!(:bugs) { create_list(:bug, 20, state_id: state.id) }
-  let(:state_id) { state.id }
   let(:bug_id) { bugs.first.id }
 
   # Test suite for GET /states/:state_id/bugs
@@ -20,8 +18,8 @@ RSpec.describe 'Bugs API' do
     end
   end
 
-  # Test suite for GET /bugs/:id
-  describe 'GET /bugs/:id' do
+  # Test suite for GET /bugs/:number?appToken=:appToken
+  describe 'GET /bugs/:number?appToken=:appToken' do
     before { get "/bugs/#{bug_id}" }
 
     context 'when the record exists' do
@@ -51,7 +49,7 @@ RSpec.describe 'Bugs API' do
   # Test suite for POST /bugs
   describe 'POST /bugs' do
     let!(:mockstate) { create(:state) }
-    let(:valid_attributes) {{ appToken: '01234BCDEF', number: rand(100), status: 'fresh', priority: 'major', comment: 'Serious Bug', state_id: mockstate.id }}
+    let(:valid_attributes) {{ appToken: '01234BCDEF', number: rand(100), status: 'fresh', priority: 'major', comment: 'Serious Bug', state: mockstate }}
 
     context 'when the request is valid' do
       before { post '/bugs', params: valid_attributes }
