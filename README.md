@@ -67,4 +67,4 @@ We can also use the search end-point for multi term queries, like:
 ```
 curl -X GET http://localhost:3000/bugs/search?q=fresh in_progress
 ```
-will return all the bugs with status of either 'fresh' or 'in_progress'.
+will return all the bugs with status of either 'fresh' or 'in_progress'(will also include comments).
