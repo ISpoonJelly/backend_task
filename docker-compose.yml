@@ -1,13 +1,18 @@
 version: '2'
 services:
   postgres:
-    image: postgres:9.4
+    image: postgres
   rabbitmq:
-    image: rabbitmq:3-management
+    image: rabbitmq
+  elasticsearch:
+    image: elasticsearch
   web:
     build: .
     image: bugapp
-    command: rails server -p 3000 -b '0.0.0.0'
+    command: ["./wait-for-it.sh", "postgres:5432", "--",
+              "./wait-for-it.sh", "rabbitmq:5672", "--",
+              "./wait-for-it.sh", "elasticsearch:9200", "--",
+              "rails", "server", "-p", "3000", "-b", "0.0.0.0"]
     volumes:
       - .:/bugApp
     ports:
@@ -15,21 +20,28 @@ services:
     links:
       - postgres
       - rabbitmq
-    depends_on:
-      - postgres
-      - rabbitmq
+      - elasticsearch
   sneakers:
     image: bugapp
-    command: rake sneakers:run
+    command: ["./wait-for-it.sh", "postgres:5432", "--",
+              "./wait-for-it.sh", "rabbitmq:5672", "--",
+              "./wait-for-it.sh", "elasticsearch:9200", "--",
+              "rake", "sneakers:run"]
     depends_on:
       - web
   db_creation:
     image: bugapp
-    command: rake db:create
+    command: ["./wait-for-it.sh", "postgres:5432", "--",
+              "./wait-for-it.sh", "rabbitmq:5672", "--",
+              "./wait-for-it.sh", "elasticsearch:9200", "--",
+              "rake", "db:create"]
     depends_on:
       - web
   db_migration:
     image: bugapp
-    command: rake db:migrate
+    command: ["./wait-for-it.sh", "postgres:5432", "--",
+              "./wait-for-it.sh", "rabbitmq:5672", "--",
+              "./wait-for-it.sh", "elasticsearch:9200", "--",
+              "rake", "db:migrate"]
     depends_on:
       - db_creation

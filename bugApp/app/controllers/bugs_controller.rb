@@ -1,6 +1,13 @@
 class BugsController < ApplicationController
   before_action :set_bug, only: [:show, :update, :destroy]
 
+  #GET /bugs/search?q=:q
+  def search
+    query = params[:q]? params[:q] : ''
+    @result = Bug.search(query)
+    bug_response(@result, :ok)
+  end
+
   #GET /bugs
   def index
     @bugs = Bug.all

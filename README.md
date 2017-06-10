@@ -54,3 +54,17 @@ or we can execute:
 curl -X GET http://localhost:3000/bugs/[bug_number]?appToken=[appToken]
 ```
 which will get us a specific bug.
+
+## Searching
+We can invoke the searching end-point to search for a specific query, like:
+```
+curl -X GET http://localhost:3000/bugs/search?q=major
+```
+will return all the bugs with priority of 'major', or maybe some bug that has a comment
+containing the word 'major'(case-insensitive).
+
+We can also use the search end-point for multi term queries, like:
+```
+curl -X GET http://localhost:3000/bugs/search?q=fresh in_progress
+```
+will return all the bugs with status of either 'fresh' or 'in_progress'.

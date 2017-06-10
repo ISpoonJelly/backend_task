@@ -1,6 +1,6 @@
-class BugConsumer
-  require 'json'
+require 'json'
 
+class BugConsumer
   def initialize()
   end
 
